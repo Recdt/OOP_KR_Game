@@ -8,7 +8,7 @@ using Vector3 = System.Numerics.Vector3;
 
 namespace ObjectsScripts
 {
-    public class Grass : MonoBehaviour, MapObjInterface
+    public class Grass : MonoBehaviour, Grow, Decrease, Die
     {
         private MapObject _objInfo;
 
@@ -24,29 +24,28 @@ namespace ObjectsScripts
 
         Vector3 getPosition()
         {
-
             return _objInfo.getPosition();
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        void OnCollisionEnter2D(Collision2D other)
         {
             Debug.Log("Grass was eaten");
-            disappear();
+            die();
         }
 
-        public void growUp()
+        public void grow()
         {
             
         }
-        
-        public void growOld()
+
+        public void decrease()
         {
             
         }
-        
-        public void disappear()
+
+        public void die()
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
