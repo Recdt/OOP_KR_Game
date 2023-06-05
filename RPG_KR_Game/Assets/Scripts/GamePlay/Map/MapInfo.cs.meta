@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-=======
 <<<<<<<< HEAD:RPG_KR_Game/Assets/Scripts/GamePlay/Map/MapInfo.cs.meta
-guid: e1b23f50c37ffaa4b88649196c73cb05
+guid: 59f9952776733aa4c81d14f8064511e1
 ========
->>>>>>> Stashed changes
 guid: e98df21e9d1290b45bde1ff88e69c9ba
+>>>>>>>> main:RPG_KR_Game/Assets/Scripts/GamePlay/DesiredVelocityProvider.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
