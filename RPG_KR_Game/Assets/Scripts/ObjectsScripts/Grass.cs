@@ -4,18 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Interfaces.MapInterfaces;
 using Unity.VisualScripting;
+using Vector3 = System.Numerics.Vector3;
 
 namespace ObjectsScripts
 {
     public class Grass : MonoBehaviour, MapObjInterface
     {
-        private MapObject info;
-        private int amount;
-
-        Grass()
-        {
-            amount = 0;
-        }
+        private MapObject _objInfo;
 
         void Start ()
         {
@@ -25,6 +20,12 @@ namespace ObjectsScripts
         void Update()
         {
             
+        }
+
+        Vector3 getPosition()
+        {
+
+            return _objInfo.getPosition();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
