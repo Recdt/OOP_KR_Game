@@ -5,7 +5,7 @@ using UnityEngine;
 using Behavior;
 using UnityEngine.SceneManagement;
 
-public class WolfLogic : Animal, IDying, IStarving, ICollision, ITrigger
+public class WolfLogic : MonoBehaviour, IDying, IStarving, ICollision, ITrigger
 {
     #region Properties
     [SerializeField] private float lifeTime = 120f;
