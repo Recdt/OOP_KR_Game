@@ -27,10 +27,13 @@ namespace ObjectsScripts
             return _objInfo.getPosition();
         }
 
-        void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("Grass was eaten");
-            die();
+            if (LayerMask.LayerToName(other.gameObject.layer) == "Mooses")
+            {
+                Debug.Log("Grass was eaten");
+                die();
+            }
         }
 
         public void grow()
