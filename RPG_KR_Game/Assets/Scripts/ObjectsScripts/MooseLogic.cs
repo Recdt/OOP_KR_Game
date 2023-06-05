@@ -4,7 +4,7 @@ using UnityEngine;
 using Interfaces;
 using Behavior;
 
-public class MooseLogic : Animal, IDying, IStarving, ICollision, ITrigger
+public class MooseLogic : MonoBehaviour, IDying, IStarving, ICollision, ITrigger
 {
     #region Properties
     
