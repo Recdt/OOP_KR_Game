@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6cb07a1-441d-4690-a9d3-80e199f951e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapInfo.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/MapInterfaces.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.RPG_KR_Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RPG_KR_Game/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c6cb07a1-441d-4690-a9d3-80e199f951e5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +12,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GamePlay/MapInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interfaces/MapInterfaces/MapObject.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -109,7 +105,7 @@
       <workItem from="1679336242035" duration="3064000" />
       <workItem from="1684668700689" duration="298000" />
       <workItem from="1685898151007" duration="731000" />
-      <workItem from="1685950426771" duration="1632000" />
+      <workItem from="1685950426771" duration="1939000" />
     </task>
     <servers />
   </component>
