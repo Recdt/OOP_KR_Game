@@ -7,7 +7,7 @@ using Vector3 = System.Numerics.Vector3;
 
 namespace SpawnSystem
 {
-    public class MapObjSpawn : MonoBehaviour, RandomPosition
+    public class MapObjSpawn : MonoBehaviour, IRandomPosition
     {
         private Vector3 _map;
         private int _grassAmount;

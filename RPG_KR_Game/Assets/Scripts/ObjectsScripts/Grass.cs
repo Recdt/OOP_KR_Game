@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace ObjectsScripts
 {
-    public class Grass : MonoBehaviour, Grow, Decrease, Die
+    public class Grass : MonoBehaviour, IGrow, IDecrease, IDie, IRandomPosition
     {
         private MapObject _objInfo;
         private Rigidbody2D _rb;
@@ -37,12 +37,15 @@ namespace ObjectsScripts
             }
         }
 
-        public void grow()
+        public Vector2 getRandomPosition()
         {
             var thisPos = gameObject.transform.position;
-            var randomPosition = new Vector2(Random.Range(thisPos.x - 0.4f, thisPos.x + 0.4f), 
+            return new Vector2(Random.Range(thisPos.x - 0.4f, thisPos.x + 0.4f),
                 Random.Range(thisPos.y - 0.4f, thisPos.y + 0.4f));
-            Instantiate(gameObject, randomPosition, Quaternion.identity, transform);
+        }
+        public void grow()
+        {
+            Instantiate(gameObject, getRandomPosition(), Quaternion.identity, transform);
         }
 
         public void decrease()

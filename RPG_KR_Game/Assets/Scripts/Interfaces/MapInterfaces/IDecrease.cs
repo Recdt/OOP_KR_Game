@@ -1,6 +1,6 @@
 namespace Interfaces.MapInterfaces
 {
-    public interface Decrease
+    public interface IDecrease
     {
         void decrease();
     }
