@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Interfaces.MapInterfaces
 {
-    public interface RandomPosition
+    public interface IRandomPosition
     {
         public Vector2 getRandomPosition();
     }

@@ -1,6 +1,6 @@
 namespace Interfaces.MapInterfaces
 {
-    public interface Grow
+    public interface IGrow
     {
         public void grow();
     }
