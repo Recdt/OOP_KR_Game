@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <list default="true" id="c6cb07a1-441d-4690-a9d3-80e199f951e5" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectsScripts/Grass.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Assets/Scripts/ObjectsScripts/Grass.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RPG_KR_Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RPG_KR_Game/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="c6cb07a1-441d-4690-a9d3-80e199f951e5" name="Changes" comment="" />
+>>>>>>> Stashed changes
 =======
     <list default="true" id="c6cb07a1-441d-4690-a9d3-80e199f951e5" name="Changes" comment="" />
 >>>>>>> Stashed changes
@@ -117,9 +121,13 @@
       <updated>1679237167333</updated>
       <workItem from="1679237169436" duration="657000" />
       <workItem from="1679336242035" duration="3064000" />
+<<<<<<< Updated upstream
       <workItem from="1684668700689" duration="298000" />
       <workItem from="1685898151007" duration="731000" />
       <workItem from="1685950426771" duration="3708000" />
+=======
+      <workItem from="1684668700689" duration="909000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
