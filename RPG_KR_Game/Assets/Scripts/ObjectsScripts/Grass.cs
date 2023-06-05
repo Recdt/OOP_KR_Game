@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Interfaces.MapInterfaces;
@@ -7,7 +8,6 @@ namespace ObjectsScripts
 {
     public class Grass : MonoBehaviour, IGrow, IDecrease, IDie, IRandomPosition
     {
-        private MapObject _objInfo;
         private Rigidbody2D _rb;
 
         private void Start()
@@ -31,18 +31,22 @@ namespace ObjectsScripts
             }
             else if (LayerMask.LayerToName(other.gameObject.layer) == "Grass")
             {
-                var thisPos = gameObject.transform.position;
-                transform.Translate(0.2f * (thisPos.x - other.gameObject.transform.position.x), 
-                    0.2f * (thisPos.y - other.gameObject.transform.position.y), 0);
+                transform.Translate(0.2f * (GetPosition().x - other.gameObject.transform.position.x), 
+                    0.2f * (GetPosition().y - other.gameObject.transform.position.y), 0);
             }
+        }
+
+        private Vector3 GetPosition()
+        {
+            return gameObject.transform.position;
         }
 
         public Vector2 getRandomPosition()
         {
-            var thisPos = gameObject.transform.position;
-            return new Vector2(Random.Range(thisPos.x - 0.4f, thisPos.x + 0.4f),
-                Random.Range(thisPos.y - 0.4f, thisPos.y + 0.4f));
+            return new Vector2(Random.Range(GetPosition().x - 0.4f, GetPosition().x + 0.4f),
+                Random.Range(GetPosition().y - 0.4f, GetPosition().y + 0.4f));
         }
+
         public void grow()
         {
             Instantiate(gameObject, getRandomPosition(), Quaternion.identity, transform);
