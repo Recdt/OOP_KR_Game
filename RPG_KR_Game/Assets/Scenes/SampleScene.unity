@@ -288,6 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c429bfb0ec55fe54a9c7072942722efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mass: 1
+  velocityLimit: 3
+  steeringForceLimit: 5
   lifeTime: 120
   eatTime: 45
 --- !u!212 &1045293102
