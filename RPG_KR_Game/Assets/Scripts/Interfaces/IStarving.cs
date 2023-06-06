@@ -2,6 +2,6 @@ namespace Interfaces
 {
     public interface IStarving
     {
-        void Starving();
+        void Starving(float Hunger);
     }
 }

@@ -2,6 +2,6 @@ namespace Interfaces
 {
     public interface IDying
     {
-        void Dying();
+        void Dying(float Hunger);
     }
 }
