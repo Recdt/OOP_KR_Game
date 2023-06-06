@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 103828351}
   m_Layer: 8
   m_Name: Moose (2)
-  m_TagString: Moose
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 1045293110}
   m_Layer: 7
   m_Name: Circle
-  m_TagString: Wolf
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 1287585047}
   m_Layer: 8
   m_Name: Moose (1)
-  m_TagString: Moose
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 1982609684}
   m_Layer: 8
   m_Name: Moose
-  m_TagString: Victim
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
