@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RabbitLogic : Animal
+public class RabbitLogic : MonoBehaviour
 {
     [SerializeField, Range(50,100)]private float hunger = 75f;
     private float _maxHunger;
