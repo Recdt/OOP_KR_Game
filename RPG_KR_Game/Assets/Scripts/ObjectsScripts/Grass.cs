@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace ObjectsScripts
 {
-    public class Grass : MonoBehaviour, IGrow, IDecrease, IDie, IRandomPosition
+    public class Grass : MonoBehaviour, IGrow, IDecrease, IDie
     {
         private Rigidbody2D _rb;
 
