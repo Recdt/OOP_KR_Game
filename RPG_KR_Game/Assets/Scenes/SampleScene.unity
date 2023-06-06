@@ -133,13 +133,10 @@ GameObject:
   m_Component:
   - component: {fileID: 103828357}
   - component: {fileID: 103828356}
-  - component: {fileID: 103828355}
-  - component: {fileID: 103828354}
   - component: {fileID: 103828353}
   - component: {fileID: 103828352}
   - component: {fileID: 103828351}
-  - component: {fileID: 103828358}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Moose (2)
   m_TagString: Moose
   m_Icon: {fileID: 0}
@@ -205,42 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b16cbddd662488d9f5a89e8ffdf5f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &103828354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103828350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fe61da25ef47114fb53ee97e20172fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flees: []
-  _neighbors: []
-  _separation: {fileID: 0}
-  _aligment: {fileID: 0}
-  _cohesion: {fileID: 0}
-  _animal: {fileID: 0}
---- !u!114 &103828355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103828350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce027b340d827f458964b785324fa68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 1
-  Animal: {fileID: 0}
-  circleDistance: 1
-  circleRadius: 2
-  angleChangeStep: 15
-  angle: 0
 --- !u!212 &103828356
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -308,22 +269,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &103828358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103828350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e22d24de434314b15833f4ddda8ca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 1
-  Animal: {fileID: 0}
-  edge: 0.05
-  ground: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,12 +363,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1045293103}
   - component: {fileID: 1045293102}
-  - component: {fileID: 1045293106}
+  - component: {fileID: 1045293111}
   - component: {fileID: 1045293101}
-  - component: {fileID: 1045293105}
-  - component: {fileID: 1045293100}
   - component: {fileID: 1045293099}
-  - component: {fileID: 1045293107}
+  - component: {fileID: 1045293109}
+  - component: {fileID: 1045293110}
   m_Layer: 7
   m_Name: Circle
   m_TagString: Wolf
@@ -446,38 +390,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1045293100
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045293098}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &1045293101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,8 +408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c429bfb0ec55fe54a9c7072942722efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hunger: 0
+  hunger: 100
   speed: 3
+  nutritionalValue: 10
 --- !u!212 &1045293102
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -552,14 +471,46 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045293098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.84, y: 2.85, z: 0}
+  m_LocalPosition: {x: -2, y: 4.3, z: 0}
   m_LocalScale: {x: 2.7218, y: 2.6175, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1045293105
+--- !u!58 &1045293109
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045293098}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 10
+--- !u!58 &1045293110
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045293098}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1045293111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -568,43 +519,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1045293098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b16cbddd662488d9f5a89e8ffdf5f10, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bd683b3e0e6403da04e14b53a9dbe59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1045293106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045293098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce027b340d827f458964b785324fa68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 1
-  Animal: {fileID: 0}
-  circleDistance: 2.05
-  circleRadius: 2.92
-  angleChangeStep: 20
-  angle: 0
---- !u!114 &1045293107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045293098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e22d24de434314b15833f4ddda8ca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 1
-  Animal: {fileID: 0}
-  edge: 0.05
-  ground: {fileID: 0}
+  moveSpeed: 2
+  rotationSpeed: 100
+  maxRotationAngle: 45
 --- !u!1 &1287585046
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,13 +535,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1287585053}
   - component: {fileID: 1287585052}
-  - component: {fileID: 1287585051}
-  - component: {fileID: 1287585050}
   - component: {fileID: 1287585049}
   - component: {fileID: 1287585048}
   - component: {fileID: 1287585047}
-  - component: {fileID: 1287585054}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Moose (1)
   m_TagString: Moose
   m_Icon: {fileID: 0}
@@ -687,42 +604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b16cbddd662488d9f5a89e8ffdf5f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1287585050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287585046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fe61da25ef47114fb53ee97e20172fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flees: []
-  _neighbors: []
-  _separation: {fileID: 0}
-  _aligment: {fileID: 0}
-  _cohesion: {fileID: 0}
-  _animal: {fileID: 0}
---- !u!114 &1287585051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287585046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce027b340d827f458964b785324fa68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 1
-  Animal: {fileID: 0}
-  circleDistance: 1
-  circleRadius: 2
-  angleChangeStep: 15
-  angle: 0
 --- !u!212 &1287585052
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -790,22 +671,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1287585054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287585046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e22d24de434314b15833f4ddda8ca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 1
-  Animal: {fileID: 0}
-  edge: 0.05
-  ground: {fileID: 0}
 --- !u!1 &1969628158 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7321115229395181444, guid: bee925b3041648b478ae1bbce277c23d, type: 3}
@@ -845,9 +710,9 @@ GameObject:
   - component: {fileID: 1982609678}
   - component: {fileID: 1982609677}
   - component: {fileID: 1982609684}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Moose
-  m_TagString: Moose
+  m_TagString: Victim
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -911,12 +776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe61da25ef47114fb53ee97e20172fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _flees: []
-  _neighbors: []
-  _separation: {fileID: 0}
-  _aligment: {fileID: 0}
-  _cohesion: {fileID: 0}
-  _animal: {fileID: 0}
 --- !u!212 &1982609680
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -977,7 +836,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982609676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.8935, y: 2.2347, z: 0}
+  m_LocalPosition: {x: 1.8, y: 34.7, z: 0}
   m_LocalScale: {x: 3.087, y: 2.9305, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1008,12 +867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce027b340d827f458964b785324fa68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 1
-  Animal: {fileID: 0}
-  circleDistance: 1
-  circleRadius: 2
-  angleChangeStep: 15
-  angle: 0
 --- !u!114 &1982609684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,10 +879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e22d24de434314b15833f4ddda8ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 1
-  Animal: {fileID: 0}
-  edge: 0.05
-  ground: {fileID: 0}
 --- !u!1001 &8763829891775341156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1051,11 +900,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3624066796519263282, guid: bee925b3041648b478ae1bbce277c23d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.71
       objectReference: {fileID: 0}
     - target: {fileID: 3624066796519263282, guid: bee925b3041648b478ae1bbce277c23d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.86
       objectReference: {fileID: 0}
     - target: {fileID: 3624066796519263282, guid: bee925b3041648b478ae1bbce277c23d, type: 3}
       propertyPath: m_LocalPosition.z

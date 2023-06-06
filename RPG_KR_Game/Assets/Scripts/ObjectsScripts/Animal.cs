@@ -6,19 +6,19 @@ using UnityEngine;
 public class Animal : MonoBehaviour,IDying,IStarving
 {
     #region Properties
-    
+    private float hunger;
     #endregion
     
     #region Methouds
     
-    public void Starving(float Hunger)
+    public void Starving()
     {
-        Hunger -= Time.deltaTime;
+        hunger -= 2*Time.deltaTime;
     }
 
-    public void Dying(float Hunger)
+    public void Dying()
     {
-        if (Hunger <= 0)
+        if (hunger <= 0)
         {
             Destroy(gameObject);
         }
