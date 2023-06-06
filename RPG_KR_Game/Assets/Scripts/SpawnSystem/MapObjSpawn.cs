@@ -7,13 +7,21 @@ using Vector3 = System.Numerics.Vector3;
 
 namespace SpawnSystem
 {
-    public class MapObjSpawn : MonoBehaviour, RandomPosition
+    public class MapObjSpawn : MonoBehaviour, IRandomPosition
     {
         private Vector3 _map;
         private int _grassAmount;
-        private GameObject _grassExample;
+        [SerializeField] private GameObject _grassExample;
+        
+        private void Start() //delete after checking
+        {
+            _map.X = 100;
+            _map.Y = 100;
+            _grassAmount = 1000;
+            StartCoroutine(spawnGrass());
+        }
 
-        public MapObjSpawn(Vector3 map, int grassAmount, GameObject grass)
+        public void oMapObjSpawn(Vector3 map, int grassAmount, GameObject grass)
         {
             _map = map;
             _grassAmount = grassAmount;

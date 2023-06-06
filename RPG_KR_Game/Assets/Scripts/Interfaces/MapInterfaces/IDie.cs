@@ -1,6 +1,6 @@
 namespace Interfaces.MapInterfaces
 {
-    public interface Die
+    public interface IDie
     {
         void die();
     }
