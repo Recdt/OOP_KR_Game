@@ -17,14 +17,12 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     private float speed = 5f;
     [SerializeField, Range(10, 40)] 
     private float nutritionalValue = 10;
-    [SerializeField] 
-    private GameObject prefab;
-    
+
     private List<Transform> _victim;
     private List<Transform> _wolfs;
     private Wandering _wandering;
     private float _maxHunger;
-    
+
     #endregion
     #region Methouds
     
@@ -56,8 +54,16 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Wolfs") _wolfs.Remove(other.gameObject.transform);
-        else if (LayerMask.LayerToName(other.gameObject.layer) == "Victim") _victim.Remove(other.gameObject.transform);
+        if (LayerMask.LayerToName(other.gameObject.layer) == "Wolfs")
+        {
+            _wolfs.Remove(other.gameObject.transform);
+            IsTargetFound();
+        }
+        else if (LayerMask.LayerToName(other.gameObject.layer) == "Victim")
+        {
+            _victim.Remove(other.gameObject.transform);
+            IsTargetFound();
+        }
     }
     public void OnCollisionEnter2D(Collision2D col)
     {
@@ -68,11 +74,11 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
             hunger += nutritionalValue;
             IsTargetFound();
         }
-        else if (LayerMask.LayerToName(col.gameObject.layer) == "Wolfes" &&
+        else if (LayerMask.LayerToName(col.gameObject.layer) == "Wolfs" &&
                  hunger >= 0.5f * _maxHunger)
         {
             //create wolf and -hunger
-            Instantiate(prefab, transform.position, Quaternion.identity);
+            Instantiate(gameObject, transform.position, Quaternion.identity);
             hunger -= 3*nutritionalValue;
             _wolfs.Remove(col.gameObject.transform);
             IsTargetFound();
@@ -84,7 +90,7 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     }
     private void IsTargetFound()
     {
-        if (_victim.Count() <= 0 && _wolfs.Count() <= 0) _wandering.enabled = true;
+        if (!_victim.Any() || (!_wolfs.Any() && hunger>=0.5*_maxHunger)) _wandering.enabled = true;
         else _wandering.enabled = false;
     }
     private void LifeCycle()
@@ -94,7 +100,8 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
             transform.position = Vector2.MoveTowards(transform.position,
                 _victim.First().transform.position, speed * Time.deltaTime);
         }
-        else{
+        else
+        {
             transform.position = Vector2.MoveTowards(transform.position, 
                 _wolfs.First().transform.position, speed * Time.deltaTime);
         }
@@ -103,12 +110,12 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     #region StartAndUpdate
     void Start()
     {
-        hunger = Random.Range(100, 200);
+        hunger = 100;
         _maxHunger = hunger;
         speed = Random.Range(3, 7);
         _victim = new List<Transform>();
         _wolfs = new List<Transform>();
-        hunger = 20;
+        hunger = Random.Range(35, 49);
         _wandering = GetComponent<Wandering>();
     }
     void Update()
