@@ -23,26 +23,28 @@ namespace ObjectsScripts
 
         private IEnumerator StartRigidbody()
         {
+            //GetComponent<Collider2D>().isTrigger = true;
             _rb.WakeUp();
             yield return new WaitForSeconds(0.1f);
             _rb.Sleep();
+            //GetComponent<Collider2D>().isTrigger = false;
         }
         
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (LayerMask.LayerToName(other.gameObject.layer) == "Mooses" ||
-                LayerMask.LayerToName(other.gameObject.layer) == "Victim") {
-                die();
-            }else
-            {
-                GetComponent<Collider2D>().isTrigger = true;
-            }
-        }
+        // private void OnCollisionEnter2D(Collision2D other)
+        // {
+        //     if (LayerMask.LayerToName(other.gameObject.layer) == "Mooses" ||
+        //         LayerMask.LayerToName(other.gameObject.layer) == "Victim") {
+        //         die();
+        //     }else
+        //     {
+        //         GetComponent<Collider2D>().isTrigger = true;
+        //     }
+        // }
 
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            GetComponent<Collider2D>().isTrigger = false;
-        }
+        // private void OnTriggerExit2D(Collider2D other)
+        // {
+        //     GetComponent<Collider2D>().isTrigger = false;
+        // }
 
         private void OnTriggerStay2D(Collider2D other)
         {
