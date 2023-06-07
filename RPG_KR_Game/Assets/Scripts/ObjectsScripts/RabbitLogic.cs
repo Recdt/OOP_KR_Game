@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Interfaces;
-using Unity.VisualScripting;
+using ObjectsScripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,7 +16,8 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     [SerializeField, Range(10, 40)] 
     private float nutritionalValue = 10;
 
-    private List<Transform> _victim;
+    private AnimalPlantMediator _md;
+    private List<GameObject> _grass;
     private List<Transform> _rabbits;
     private List<Transform> _wolfs;
     private Wandering _wandering;
@@ -50,8 +49,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Grass")
         {
-            var target = col.GetComponent<Transform>();
-            _victim.Add(target);
+            _grass.Add(col.gameObject);
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Victim")
         {
@@ -64,24 +62,18 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     public void OnTriggerExit2D(Collider2D other)
     {
         if (LayerMask.LayerToName(other.gameObject.layer) == "Wolfs")
-        {//дописати параметри погоні
+        {
             _wolfs.Remove(other.gameObject.transform);
             if (!_wolfs.Any()) _isRunningAway = false;
         }
         else if (LayerMask.LayerToName(other.gameObject.layer) == "Victim") _rabbits.Remove(other.gameObject.transform);
-        else if(LayerMask.LayerToName(other.gameObject.layer) == "Grass") _victim.Remove(other.gameObject.transform);
+        else if(LayerMask.LayerToName(other.gameObject.layer) == "Grass") _grass.Remove(other.gameObject);
     }
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (LayerMask.LayerToName(col.gameObject.layer) == "Grass")
-        {
-            hunger += nutritionalValue;
-            _victim.Remove(col.gameObject.transform);
-            IsTargetFound();
-        }
-        else if (LayerMask.LayerToName(col.gameObject.layer) == "Victim" &&
-                 hunger >= 0.5f * _maxHunger)
+        if (LayerMask.LayerToName(col.gameObject.layer) == "Victim" &&
+            hunger >= 0.5f * _maxHunger)
         {
             //create rabbit and -hunger
             Instantiate(gameObject, transform.position, Quaternion.identity);
@@ -104,8 +96,9 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         else if (hunger <= 0.5 * _maxHunger)
         {
             transform.position = Vector2.MoveTowards(transform.position,
-                _victim.First().transform.position, speed * Time.deltaTime);
-        }
+                _grass.First().transform.position, speed * Time.deltaTime);
+            if (transform.position == _grass.First().transform.position) Eat();
+            }
         else 
         {
             transform.position = Vector2.MoveTowards(transform.position, 
@@ -114,8 +107,16 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     }
     private void IsTargetFound()
     {
-        if (!_victim.Any() && !_wolfs.Any() && (!_rabbits.Any()|| (_rabbits.Any() && hunger<50))) _wandering.enabled = true;
+        if (!_grass.Any() && !_wolfs.Any() && (!_rabbits.Any()|| (_rabbits.Any() && hunger<50))) _wandering.enabled = true;
         else _wandering.enabled = false;
+    }
+
+    private void Eat()
+    {
+        hunger += nutritionalValue;
+        _md.Notify(gameObject, _grass.First(), "was eaten");
+        _grass.Remove(_grass.First());
+        IsTargetFound();
     }
 
     private Vector3 EscapePathVector()
@@ -139,7 +140,8 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         hunger = 100;
         _maxHunger = hunger;
         speed = Random.Range(3, 7);
-        _victim = new List<Transform>();
+        _md = new AnimalPlantMediator();
+        _grass = new List<GameObject>();
         _wolfs = new List<Transform>();
         _rabbits = new List<Transform>();
         hunger = Random.Range(35, 49);
