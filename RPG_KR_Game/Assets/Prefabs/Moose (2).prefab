@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1793376293944003826}
   - component: {fileID: 1793376293944003827}
   - component: {fileID: 8429820364044517558}
-  - component: {fileID: 3549592557329727595}
+  - component: {fileID: 7124482691874848522}
   - component: {fileID: 1793376293944003831}
   - component: {fileID: 1793376293944003592}
   - component: {fileID: 4938290633130021629}
@@ -104,7 +104,7 @@ MonoBehaviour:
   moveSpeed: 2
   rotationSpeed: 100
   maxRotationAngle: 45
---- !u!114 &3549592557329727595
+--- !u!114 &7124482691874848522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,13 +113,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1793376293944003593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb328971d1b34e346a3fa21cfcc7c2c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d6307bfeaf2bdc46b3290df6eb05921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hunger: 750
   speed: 5
   nutritionalValue: 10
-  prefab: {fileID: 0}
 --- !u!61 &1793376293944003831
 BoxCollider2D:
   m_ObjectHideFlags: 0

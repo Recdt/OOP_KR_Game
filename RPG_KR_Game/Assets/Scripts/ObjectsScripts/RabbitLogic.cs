@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Interfaces;
@@ -62,7 +64,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     public void OnTriggerExit2D(Collider2D other)
     {
         if (LayerMask.LayerToName(other.gameObject.layer) == "Wolfs")
-        {
+        {//дописати параметри погоні
             _wolfs.Remove(other.gameObject.transform);
             if (!_wolfs.Any()) _isRunningAway = false;
         }
@@ -97,8 +99,11 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         {
             transform.position = Vector2.MoveTowards(transform.position,
                 _grass.First().transform.position, speed * Time.deltaTime);
-            if (transform.position == _grass.First().transform.position) Eat();
+            if (transform.position == _grass.First().transform.position)
+            {
+                Eat();
             }
+        }
         else 
         {
             transform.position = Vector2.MoveTowards(transform.position, 
