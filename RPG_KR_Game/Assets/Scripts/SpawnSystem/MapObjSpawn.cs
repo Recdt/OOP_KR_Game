@@ -21,7 +21,7 @@ namespace SpawnSystem
         {
             _map.X = 100;
             _map.Y = 100;
-            _grassAmount = 5;
+            _grassAmount = 10;
             _grassSpawn = gameObject.AddComponent<GrassSpawn>();
             _rainEvent = gameObject.AddComponent<Rain>();
             _grassSpawn.SetRainEvent(_rainEvent);

@@ -52,6 +52,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Grass")
         {
             _grass.Add(col.gameObject);
+            IsTargetFound();
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Victim")
         {
@@ -91,28 +92,31 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     }
     private void LifeCycle()
     {
+        IsTargetFound();
         if (_isRunningAway)
         {
             RunAway();
         }
-        else if (hunger <= 0.5 * _maxHunger)
+        else if (hunger <= 0.5 * _maxHunger && _wandering.enabled==false)
         {
             transform.position = Vector2.MoveTowards(transform.position,
                 _grass.First().transform.position, speed * Time.deltaTime);
             if (transform.position == _grass.First().transform.position)
             {
                 Eat();
+                IsTargetFound();
             }
         }
-        else 
+        else if(hunger > 0.5 * _maxHunger&& _wandering.enabled==false) 
         {
             transform.position = Vector2.MoveTowards(transform.position, 
                 _rabbits.First().transform.position, speed * Time.deltaTime);
         }
+        IsTargetFound();
     }
     private void IsTargetFound()
     {
-        if (!_grass.Any() && !_wolfs.Any() && (!_rabbits.Any()|| (_rabbits.Any() && hunger<50))) _wandering.enabled = true;
+        if (!_grass.Any() && (!_rabbits.Any()||(_rabbits.Any() && hunger<50))) _wandering.enabled = true;
         else _wandering.enabled = false;
     }
 
@@ -121,7 +125,6 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         hunger += nutritionalValue;
         _md.Notify(gameObject, _grass.First(), "was eaten");
         _grass.Remove(_grass.First());
-        IsTargetFound();
     }
 
     private Vector3 EscapePathVector()
