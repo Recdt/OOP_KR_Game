@@ -17,6 +17,8 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     private float speed = 5f;
     [SerializeField, Range(10, 40)] 
     private float nutritionalValue = 10;
+    [SerializeField] 
+    private GameObject prefab;
     
     private List<Transform> _victim;
     private List<Transform> _wolfs;
@@ -70,7 +72,10 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
                  hunger >= 0.5f * _maxHunger)
         {
             //create wolf and -hunger
-            
+            Instantiate(prefab, transform.position, Quaternion.identity);
+            hunger -= 3*nutritionalValue;
+            _wolfs.Remove(col.gameObject.transform);
+            IsTargetFound();
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Water")
         {
