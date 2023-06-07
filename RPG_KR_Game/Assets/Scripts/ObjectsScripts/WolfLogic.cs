@@ -6,7 +6,6 @@ using Interfaces;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
 public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
 {
     #region Properties
