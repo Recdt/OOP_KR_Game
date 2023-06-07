@@ -18,23 +18,28 @@ namespace ObjectsScripts
         {
             _rb = GetComponent<Rigidbody2D>();
             _nearPosGenerator = new NearPosGenerator();
-            StartCoroutine(StartRigitbody());
+            StartCoroutine(StartRigidbody());
         }
 
-        private IEnumerator StartRigitbody()
+        private IEnumerator StartRigidbody()
         {
             _rb.WakeUp();
             yield return new WaitForSeconds(0.1f);
             _rb.Sleep();
         }
 
-        private void OnTriggerStay2D(Collider2D other)
+        private void OnCollisionEnter2D(Collision2D other)
         {
             if (LayerMask.LayerToName(other.gameObject.layer) == "Mooses")
             {
                 die();
             }
-            else if (LayerMask.LayerToName(other.gameObject.layer) == "Grass")
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            
+            if (LayerMask.LayerToName(other.gameObject.layer) == "Grass")
             {
                 transform.Translate(0.2f * (GetPosition().x - other.gameObject.transform.position.x), 
                     0.2f * (GetPosition().y - other.gameObject.transform.position.y), 0);
