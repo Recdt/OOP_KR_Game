@@ -4,6 +4,6 @@ namespace Interfaces
 {
     public interface IMovment
     {
-        Vector3 Movement();
+        void Movement();
     }
 }

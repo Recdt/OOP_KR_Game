@@ -2,31 +2,43 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Interfaces;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class WolfLogic : Animal
+public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
 {
-    [SerializeField, Range(100,200)]private float hunger = 100f;
-    private float _maxHunger;
-    [SerializeField, Range(3,7)] private float speed = 3f;
-    [SerializeField, Range(10, 40)] private float nutritionalValue = 10;
+    #region Properties
+    
+    [SerializeField, Range(100,200)]
+    private float hunger = 100f;
+    [SerializeField, Range(3,7)] 
+    private float speed = 5f;
+    [SerializeField, Range(10, 40)] 
+    private float nutritionalValue = 10;
+
     private List<Transform> _victim;
     private List<Transform> _wolfs;
-    [SerializeField] private Wandering wandering;
-    
-    void Start()
-    {
-        hunger = Random.Range(100, 200);
-        _maxHunger = hunger;
-        speed = Random.Range(1, 5);
-        _victim = new List<Transform>();
-        _wolfs = new List<Transform>();
-    }
-    
+    private Wandering _wandering;
+    private float _maxHunger;
 
-    private void OnTriggerEnter2D(Collider2D col)
+    #endregion
+    #region Methouds
+    
+    public void Starving()
+    {
+        hunger -= 2*Time.deltaTime;
+    }
+
+    public void Dying()
+    {
+        if (hunger <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void OnTriggerEnter2D(Collider2D col)
     {
         if (LayerMask.LayerToName(col.gameObject.layer) == "Wolfs")
         {
@@ -38,49 +50,79 @@ public class WolfLogic : Animal
             var target = col.GetComponent<Transform>();
             _victim.Add(target);
         }
+        IsTargetFound();
     }
-
-    private void OnTriggerExit2D(Collider2D other)
+    public void OnTriggerExit2D(Collider2D other)
     {
-        if (LayerMask.LayerToName(other.gameObject.layer) == "Wolfs") _wolfs.Remove(other.gameObject.transform);
-        else if (LayerMask.LayerToName(other.gameObject.layer) == "Victim") _victim.Remove(other.gameObject.transform);
+        if (LayerMask.LayerToName(other.gameObject.layer) == "Wolfs")
+        {
+            _wolfs.Remove(other.gameObject.transform);
+            IsTargetFound();
+        }
+        else if (LayerMask.LayerToName(other.gameObject.layer) == "Victim")
+        {
+            _victim.Remove(other.gameObject.transform);
+            IsTargetFound();
+        }
     }
-
-    private void OnCollisionEnter2D(Collision2D col)
+    public void OnCollisionEnter2D(Collision2D col)
     {
         if (LayerMask.LayerToName(col.gameObject.layer) == "Victim")
         {
             _victim.Remove(col.gameObject.transform);
             Destroy(col.gameObject);
             hunger += nutritionalValue;
+            IsTargetFound();
         }
-        else if (LayerMask.LayerToName(col.gameObject.layer) == "Wolfes" &&
+        else if (LayerMask.LayerToName(col.gameObject.layer) == "Wolfs" &&
                  hunger >= 0.5f * _maxHunger)
         {
             //create wolf and -hunger
+            Instantiate(gameObject, transform.position, Quaternion.identity);
+            hunger -= 3*nutritionalValue;
+            _wolfs.Remove(col.gameObject.transform);
+            IsTargetFound();
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Water")
         {
             Destroy(gameObject);
         }
     }
-
-    private void LifeCycle()
-    {
-        if (hunger <= 0.5 * _maxHunger) transform.position = Vector2.MoveTowards(transform.position,
-            _victim.First().position, speed * Time.deltaTime);
-        else transform.position = Vector2.MoveTowards(transform.position, 
-            _wolfs.First().position, speed * Time.deltaTime);
-    }
-
     private void IsTargetFound()
     {
-        if (_victim.Count == 0 && _wolfs.Count == 0) wandering.enabled = false;
-        else wandering.enabled = true;
+        if (!_victim.Any() || (!_wolfs.Any() && hunger>=0.5*_maxHunger)) _wandering.enabled = true;
+        else _wandering.enabled = false;
+    }
+    private void LifeCycle()
+    {
+        if (hunger <= 0.5 * _maxHunger)
+        {
+            transform.position = Vector2.MoveTowards(transform.position,
+                _victim.First().transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, 
+                _wolfs.First().transform.position, speed * Time.deltaTime);
+        }
+    }
+    #endregion
+    #region StartAndUpdate
+    void Start()
+    {
+        hunger = 100;
+        _maxHunger = hunger;
+        speed = Random.Range(3, 7);
+        _victim = new List<Transform>();
+        _wolfs = new List<Transform>();
+        hunger = Random.Range(35, 49);
+        _wandering = GetComponent<Wandering>();
     }
     void Update()
     {
-        Starving(hunger);
-        Dying(hunger);
+        Starving();
+        Dying();
+        LifeCycle();
     }
+    #endregion
 }

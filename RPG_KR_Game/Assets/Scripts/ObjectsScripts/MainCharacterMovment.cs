@@ -14,17 +14,17 @@ public class MainCharacterMovment : MonoBehaviour, IMovment
     #endregion
     #region Methods
 
-    public Vector3 Movement()
+    public void Movement()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         direction = new Vector3(horizontal, vertical);
-        return direction;
+        transform.position += direction * speed * Time.deltaTime;
     }
     
     private void Update()
     {
-        transform.position += Movement() * speed * Time.deltaTime;
+        Movement();
     }
     #endregion
 }
