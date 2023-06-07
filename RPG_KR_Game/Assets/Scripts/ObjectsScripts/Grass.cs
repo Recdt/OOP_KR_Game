@@ -27,18 +27,25 @@ namespace ObjectsScripts
             yield return new WaitForSeconds(0.1f);
             _rb.Sleep();
         }
-
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (LayerMask.LayerToName(other.gameObject.layer) == "Mooses")
-            {
+            if (LayerMask.LayerToName(other.gameObject.layer) == "Mooses" ||
+                LayerMask.LayerToName(other.gameObject.layer) == "Victim") {
                 die();
+            }else
+            {
+                GetComponent<Collider2D>().isTrigger = true;
             }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            GetComponent<Collider2D>().isTrigger = false;
         }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            
             if (LayerMask.LayerToName(other.gameObject.layer) == "Grass")
             {
                 transform.Translate(0.2f * (GetPosition().x - other.gameObject.transform.position.x), 
@@ -46,16 +53,11 @@ namespace ObjectsScripts
             }
         }
 
+
         private Vector3 GetPosition()
         {
             return gameObject.transform.position;
         }
-
-        // public Vector2 getRandomPosition()
-        // {
-        //     return new Vector2(Random.Range(GetPosition().x - 0.4f, GetPosition().x + 0.4f),
-        //         Random.Range(GetPosition().y - 0.4f, GetPosition().y + 0.4f));
-        // }
 
         public void grow()
         {
