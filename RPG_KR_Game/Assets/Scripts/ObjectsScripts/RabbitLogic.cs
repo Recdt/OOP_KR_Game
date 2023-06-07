@@ -101,7 +101,6 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         {
             transform.position = Vector2.MoveTowards(transform.position,
                 _grass.First().transform.position, speed * Time.deltaTime);
-<<<<<<< Updated upstream
             if (transform.position == _grass.First().transform.position)
             {
                 Eat();
@@ -109,11 +108,6 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
             }
         }
         else if(hunger > 0.5 * _maxHunger&& _wandering.enabled==false) 
-=======
-            if (transform.position == _grass.First().transform.position) Eat();
-        }
-        else 
->>>>>>> Stashed changes
         {
             transform.position = Vector2.MoveTowards(transform.position, 
                 _rabbits.First().transform.position, speed * Time.deltaTime);
