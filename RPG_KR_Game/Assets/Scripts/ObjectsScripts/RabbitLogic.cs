@@ -18,7 +18,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     [SerializeField, Range(10, 40)] 
     private float nutritionalValue = 10;
 
-    private List<Transform> _grass;
+    private List<Transform> _victim;
     private List<Transform> _rabbits;
     private List<Transform> _wolfs;
     private Wandering _wandering;
@@ -51,7 +51,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Grass")
         {
             var target = col.GetComponent<Transform>();
-            _grass.Add(target);
+            _victim.Add(target);
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Victim")
         {
@@ -69,7 +69,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
             if (!_wolfs.Any()) _isRunningAway = false;
         }
         else if (LayerMask.LayerToName(other.gameObject.layer) == "Victim") _rabbits.Remove(other.gameObject.transform);
-        else if(LayerMask.LayerToName(other.gameObject.layer) == "Grass") _grass.Remove(other.gameObject.transform);
+        else if(LayerMask.LayerToName(other.gameObject.layer) == "Grass") _victim.Remove(other.gameObject.transform);
     }
 
     public void OnCollisionEnter2D(Collision2D col)
@@ -77,7 +77,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         if (LayerMask.LayerToName(col.gameObject.layer) == "Grass")
         {
             hunger += nutritionalValue;
-            _grass.Remove(col.gameObject.transform);
+            _victim.Remove(col.gameObject.transform);
             IsTargetFound();
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Victim" &&
@@ -104,7 +104,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         else if (hunger <= 0.5 * _maxHunger)
         {
             transform.position = Vector2.MoveTowards(transform.position,
-                _grass.First().transform.position, speed * Time.deltaTime);
+                _victim.First().transform.position, speed * Time.deltaTime);
         }
         else 
         {
@@ -114,7 +114,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     }
     private void IsTargetFound()
     {
-        if (!_grass.Any() && !_wolfs.Any() && (!_rabbits.Any()|| (_rabbits.Any() && hunger<50))) _wandering.enabled = true;
+        if (!_victim.Any() && !_wolfs.Any() && (!_rabbits.Any()|| (_rabbits.Any() && hunger<50))) _wandering.enabled = true;
         else _wandering.enabled = false;
     }
 
@@ -139,7 +139,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         hunger = 100;
         _maxHunger = hunger;
         speed = Random.Range(3, 7);
-        _grass = new List<Transform>();
+        _victim = new List<Transform>();
         _wolfs = new List<Transform>();
         _rabbits = new List<Transform>();
         hunger = Random.Range(35, 49);
