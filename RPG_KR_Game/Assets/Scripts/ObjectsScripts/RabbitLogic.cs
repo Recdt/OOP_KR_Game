@@ -17,6 +17,8 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     private float speed = 5f;
     [SerializeField, Range(10, 40)] 
     private float nutritionalValue = 10;
+    [SerializeField] 
+    private GameObject prefab;
     
     private List<Transform> _grass;
     private List<Transform> _rabbits;
@@ -26,7 +28,6 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     private bool _isRunningAway;
     
     #endregion
-
     #region Methouds
     
     public void Starving()
@@ -47,6 +48,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         {
             var target = col.GetComponent<Transform>();
             _wolfs.Add(target);
+            _isRunningAway = true;
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Grass")
         {
@@ -66,6 +68,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         if (LayerMask.LayerToName(other.gameObject.layer) == "Wolfs")
         {//дописати параметри погоні
             _wolfs.Remove(other.gameObject.transform);
+            if (_wolfs.Count == 0) _isRunningAway = false;
         }
         else if (LayerMask.LayerToName(other.gameObject.layer) == "Victim") _rabbits.Remove(other.gameObject.transform);
         else if(LayerMask.LayerToName(other.gameObject.layer) == "Grass") _grass.Remove(other.gameObject.transform);
@@ -84,7 +87,10 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
                  hunger >= 0.5f * _maxHunger)
         {
             //create rabbit and -hunger
-
+            Instantiate(prefab, transform.position, Quaternion.identity);
+            hunger -= 3*nutritionalValue;
+            _rabbits.Remove(col.gameObject.transform);
+            IsTargetFound();
         }
         else if (LayerMask.LayerToName(col.gameObject.layer) == "Water" ||
                  LayerMask.LayerToName(col.gameObject.layer) == "Wolf")
@@ -96,7 +102,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     {
         if (_isRunningAway)
         {
-            
+            RunAway();
         }
         else if (hunger <= 0.5 * _maxHunger)
         {
@@ -111,14 +117,24 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     }
     private void IsTargetFound()
     {
-        if (_grass.Count() <= 0 && _wolfs.Count() <= 0) _wandering.enabled = true;
+        if (_grass.Count() <= 0 && _wolfs.Count() <= 0 && (_rabbits.Count()<=0 && hunger>=50)) _wandering.enabled = true;
         else _wandering.enabled = false;
     }
 
+    private Vector3 EscapePathVector()
+    {
+        Vector3 temporary = Vector3.zero;
+        foreach (var wolf in _wolfs)
+        {
+            temporary += (transform.position - wolf.transform.position).normalized;
+        }
+        return temporary;
+    }
     private void RunAway()
     {
-        
+        transform.position += EscapePathVector() * speed * Time.deltaTime;
     }
+    
     #endregion
     #region StartAndUpdate
     void Start()
