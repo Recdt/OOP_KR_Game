@@ -299,7 +299,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.082405396, g: 0.3490566, b: 0.067506224, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -354,12 +354,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427279677}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81eeda2414c725d4b87f0724ca2569c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thingToFollow: {fileID: 1467058430}
+  thingToFollow: {fileID: 0}
 --- !u!1 &513540163
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 513540165}
   - component: {fileID: 513540164}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,8 +390,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _grassExample: {fileID: 4069322885562696392, guid: 6ad0ce9691a83f34ba055b3fe902dd6d, type: 3}
-  _wolfExample: {fileID: 0}
-  _rabbitExample: {fileID: 0}
+  _wolfExample: {fileID: 5677834921972847712, guid: 9dc2885b66a004347b411ed388635874, type: 3}
+  _rabbitExample: {fileID: 1793376293944003593, guid: 0effdfbb368eb6c4b893c98edcc43255, type: 3}
 --- !u!4 &513540165
 Transform:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &670497657
 PrefabInstance:

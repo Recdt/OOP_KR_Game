@@ -28,7 +28,7 @@ namespace GlobalEvents
             _timer -= Time.deltaTime;
             if (_timer <= 0f)
             {
-                saveStatistic();
+                //saveStatistic();
                 _timer = _interval;
             }
             if (Input.GetKeyDown(KeyCode.R))
