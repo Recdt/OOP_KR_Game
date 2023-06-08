@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:RPG_KR_Game/Assets/Scripts/GamePlay/Map/MapInfo.cs.meta
+guid: 4732f4becc76bef4e8c09046331005d6
+========
+guid: e98df21e9d1290b45bde1ff88e69c9ba
+>>>>>>>> main:RPG_KR_Game/Assets/Scripts/GamePlay/DesiredVelocityProvider.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
