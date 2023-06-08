@@ -10,6 +10,7 @@ public class Wandering : MonoBehaviour, IMovment
     public float maxRotationAngle = 360f;
     private Quaternion _targetRotation;
     private Vector3 _randomSide;
+    private bool _reloadTime = false;
 
     #endregion
     #region Methouds
@@ -30,11 +31,23 @@ public class Wandering : MonoBehaviour, IMovment
         }
         return Vector3.up;
     }
+
+    private bool ChectTimeReload()
+    {
+        if (Time.time % 5 >= 4.9) return false;
+        else return true;
+    }
     public void Movement()
     {
-        
+        _reloadTime = ChectTimeReload();
+        if (!_reloadTime)
+        {
+            _randomSide = ChooseRandSide();
+            _reloadTime = true;
+        }
+
         // Рухаємо тварину вперед
-        transform.Translate(ChooseRandSide() * moveSpeed * Time.deltaTime);
+        transform.Translate(_randomSide * moveSpeed * Time.deltaTime);
         // Поворот до цільового кута
         transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, rotationSpeed * Time.deltaTime);
         // Якщо досягли цільового кута, встановлюємо новий цільовий кут
