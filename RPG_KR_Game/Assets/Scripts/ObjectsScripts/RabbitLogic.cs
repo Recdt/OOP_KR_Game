@@ -15,7 +15,6 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     private float hunger = 750f;
     [SerializeField, Range(3,7)] 
     private float speed = 5f;
-    [SerializeField, Range(10, 40)] 
     private float nutritionalValue = 20;
 
     private AnimalPlantMediator _md;
