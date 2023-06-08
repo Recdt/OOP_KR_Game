@@ -7,11 +7,11 @@ public class MainCharacterMovment : MonoBehaviour, IMovment
 {
     #region Properties
 
-    [SerializeField,Range(5,30)]private float speed = 10;
+    private float speed = 15;
     private float horizontal, vertical;
     private Vector3 direction;
     
-    private float zoomSpeed = 100f;
+    private float zoomSpeed = 500f;
 
     #endregion
     #region Methods
