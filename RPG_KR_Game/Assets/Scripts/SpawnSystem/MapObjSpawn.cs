@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
+using System.IO;
 using GlobalEvents;
 using Interfaces.MapInterfaces;
 using Unity.VisualScripting;
 using UnityEngine;
+using File = UnityEngine.Windows.File;
 using Random = UnityEngine.Random;
 using Vector3 = System.Numerics.Vector3;
 
@@ -32,6 +34,8 @@ namespace SpawnSystem
         {
             _map.X = 200;
             _map.Y = 100;
+            
+            ReadData();
 
             _grassSpawn = gameObject.AddComponent<GrassSpawn>();
             _animalSpawn = gameObject.AddComponent<AnimalSpawn>();
@@ -49,6 +53,24 @@ namespace SpawnSystem
             {
                 StartCoroutine(_grassSpawn.Spawn(_grassExample, _map, _grassUpdateAmount));
                 _timer = _interval;
+            }
+        }
+
+        private string filePath = "Assets/StartData/start_data.txt";
+        private void ReadData()
+        {
+            if (File.Exists(filePath))
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    _grassAmount = int.Parse(reader.ReadLine());
+                    _wolfAmount = int.Parse(reader.ReadLine());
+                    _rabbitAmount = int.Parse(reader.ReadLine());
+                }
+            }
+            else
+            {
+                Debug.LogError("No file");
             }
         }
 
