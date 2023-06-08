@@ -14,7 +14,7 @@ namespace SpawnSystem
         private Vector3 _map;
         private int _grassAmount = 400;
         private int _grassUpdateAmount = 10;
-        private int _wolfAmount = 10;
+        private int _wolfAmount = 20;
         private int _rabbitAmount = 30;
         
         [SerializeField] private GameObject _grassExample;
@@ -30,8 +30,8 @@ namespace SpawnSystem
 
         private void Start()
         {
-            _map.X = 300;
-            _map.Y = 300;
+            _map.X = 200;
+            _map.Y = 100;
 
             _grassSpawn = gameObject.AddComponent<GrassSpawn>();
             _animalSpawn = gameObject.AddComponent<AnimalSpawn>();

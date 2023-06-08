@@ -27,7 +27,7 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     
     public void Starving()
     {
-        hunger -= 2*Time.deltaTime;
+        hunger -= Time.deltaTime;
     }
 
     public void Dying()

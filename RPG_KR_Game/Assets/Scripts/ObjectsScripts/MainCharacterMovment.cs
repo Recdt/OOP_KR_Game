@@ -22,7 +22,7 @@ public class MainCharacterMovment : MonoBehaviour, IMovment
         transform.position += direction * speed * Time.deltaTime;
     }
     
-    private void Update()
+    private void LateUpdate()
     {
         Movement();
     }

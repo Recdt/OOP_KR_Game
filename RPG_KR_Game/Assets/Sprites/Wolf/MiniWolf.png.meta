@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 0.5
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -905,10 +905,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       MiniWolf_3: 38617525
-      MiniWolf_24: -1573131119
+      MiniWolf_26: -1998450210
       MiniWolf_17: 701247720
       MiniWolf_10: -858806489
-      MiniWolf_26: -1998450210
       MiniWolf_31: -443986441
       MiniWolf_21: -307282850
       MiniWolf_35: 1271626479
@@ -934,8 +933,9 @@ TextureImporter:
       MiniWolf_33: -734169290
       MiniWolf_36: -1605681279
       MiniWolf_8: -2024331548
-      MiniWolf_23: -261989630
+      MiniWolf_24: -1573131119
       MiniWolf_2: 1894360122
+      MiniWolf_23: -261989630
       MiniWolf_20: 1120059512
       MiniWolf_15: 734330324
       MiniWolf_12: -800749433
