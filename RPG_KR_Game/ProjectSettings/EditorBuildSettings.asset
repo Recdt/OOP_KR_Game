@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ed55ce84acb49d24aaf2228122535ada
   - enabled: 1
-    path: Assets/Scenes/Predator And Prey.unity
-    guid: ac3b1587d3bcb5349a2534bc30e8513c
+    path: Assets/Scenes/MainScene.unity
+    guid: 552bd7f205c7a7f40a805d2cebf46926
   m_configObjects: {}
