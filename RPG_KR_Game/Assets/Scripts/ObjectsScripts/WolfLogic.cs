@@ -14,8 +14,7 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     private float hunger = 100f;
     [SerializeField, Range(3,7)] 
     private float speed = 5f;
-    [SerializeField, Range(10, 40)] 
-    private float nutritionalValue = 10;
+    private float nutritionalValue = 20;
 
     private List<Transform> _victim;
     private List<Transform> _wolfs;
@@ -78,7 +77,7 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         {
             //create wolf and -hunger
             Instantiate(gameObject, transform.position, Quaternion.identity);
-            hunger -= 3*nutritionalValue;
+            hunger -= 3*nutritionalValue/2;
             _wolfs.Remove(col.gameObject.transform);
             IsTargetFound();
         }
