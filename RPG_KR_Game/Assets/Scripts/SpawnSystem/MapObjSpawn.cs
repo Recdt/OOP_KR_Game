@@ -5,7 +5,6 @@ using GlobalEvents;
 using Interfaces.MapInterfaces;
 using Unity.VisualScripting;
 using UnityEngine;
-using File = UnityEngine.Windows.File;
 using Random = UnityEngine.Random;
 using Vector3 = System.Numerics.Vector3;
 
@@ -56,7 +55,7 @@ namespace SpawnSystem
             }
         }
 
-        private string filePath = "Assets/StartData/start_data.txt";
+        private string filePath = "start_data.txt";
         private void ReadData()
         {
             if (File.Exists(filePath))

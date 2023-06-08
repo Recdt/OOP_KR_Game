@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ReadInput : MonoBehaviour
 {
-    private const string filePath = "Assets/StartData/start_data.txt";
+    private const string filePath = "start_data.txt";
 
     private int grassCount = 400;
     private int wolvesCount = 200;
