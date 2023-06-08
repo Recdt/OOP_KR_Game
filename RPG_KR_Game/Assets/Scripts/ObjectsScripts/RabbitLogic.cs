@@ -16,7 +16,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     [SerializeField, Range(3,7)] 
     private float speed = 5f;
     [SerializeField, Range(10, 40)] 
-    private float nutritionalValue = 10;
+    private float nutritionalValue = 20;
 
     private AnimalPlantMediator _md;
     private List<GameObject> _grass;
@@ -80,7 +80,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
         {
             //create rabbit and -hunger
             Instantiate(gameObject, transform.position, Quaternion.identity);
-            hunger -= 3*nutritionalValue;
+            hunger -= 3*nutritionalValue/2;
             _rabbits.Remove(col.gameObject.transform);
             IsTargetFound();
         }
@@ -117,6 +117,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     private void IsTargetFound()
     {
         if (!_grass.Any() && (!_rabbits.Any()||(_rabbits.Any() && hunger<50))) _wandering.enabled = true;
+        else if(_grass.Any() && hunger>50 && !_rabbits.Any())_wandering.enabled = true;
         else _wandering.enabled = false;
     }
 
@@ -147,7 +148,7 @@ public class RabbitLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     {
         hunger = 100;
         _maxHunger = hunger;
-        speed = Random.Range(3, 7);
+        speed = Random.Range(2, 5);
         _md = new AnimalPlantMediator();
         _grass = new List<GameObject>();
         _wolfs = new List<Transform>();
