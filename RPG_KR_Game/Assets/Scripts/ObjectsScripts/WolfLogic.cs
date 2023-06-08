@@ -111,7 +111,7 @@ public class WolfLogic : MonoBehaviour, IDying, IStarving, ITrigger,ICollision
     {
         hunger = 100;
         _maxHunger = hunger;
-        speed = Random.Range(3, 7);
+        speed = Random.Range(2, 6);
         _victim = new List<Transform>();
         _wolfs = new List<Transform>();
         hunger = Random.Range(35, 49);
